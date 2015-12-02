@@ -1,0 +1,56 @@
+﻿@model IEnumerable<WebApplication.Project1.Models.Article>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Artykuły</h2>
+<h3>Lista ostatnich @Model.Count() artykułów</h3>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Context)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Author)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Context)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {id = item.ArticleId}) |
+                @Html.ActionLink("Details", "Details", new {id = item.ArticleId}) |
+                @Html.ActionLink("Delete", "Delete", new {id = item.ArticleId})
+            </td>
+        </tr>
+    }
+
+</table>
+
+@foreach (var item in Model)
+{
+    <div class ="article"></div>
+    <h4>@Html.DisplayFor(modelItem => item.Title)</h4>
+    <p>@Html.DisplayFor(modelItem => item.Context)</p>
+    <p>@Html.DisplayFor(modelItem => item.Author)</p>
+    <br/>
+}
