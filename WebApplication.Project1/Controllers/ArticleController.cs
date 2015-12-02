@@ -49,7 +49,10 @@ namespace WebApplication.Project1.Controllers
         // GET: Article/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var selectedPost = from r in _articles
+                where r.ArticleId == id
+                select r;
+            return View(selectedPost);
         }
 
         // POST: Article/Edit/5

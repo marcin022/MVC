@@ -1,4 +1,5 @@
-﻿@model IEnumerable<WebApplication.Project1.Models.Article>
+﻿@using System.ServiceModel.Configuration
+@model IEnumerable<WebApplication.Project1.Models.Article>
 
 @{
     ViewBag.Title = "Index";
@@ -52,5 +53,8 @@
     <h4>@Html.DisplayFor(modelItem => item.Title)</h4>
     <p>@Html.DisplayFor(modelItem => item.Context)</p>
     <p>@Html.DisplayFor(modelItem => item.Author)</p>
+    
+    <span class ="right">@Html.Action("Edit", "Edit", new{id = item.ArticleId})</span>
+    
     <br/>
 }
