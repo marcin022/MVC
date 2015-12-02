@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using WebApplication.Project1.Models;
 
 namespace WebApplication.Project1.Controllers
@@ -57,16 +58,27 @@ namespace WebApplication.Project1.Controllers
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
-            try
-            {
-                // TODO: Add update logic here
 
+            var selectedPost = _articles.Single(r => r.ArticleId == id);
+            if (TryUpdateModel(selectedPost))
+            {
+                //tutaj logika z bd
                 return RedirectToAction("Index");
             }
-            catch
+            else
             {
-                return View();
+                return View(selectedPost);
             }
+            //try
+            //{
+            //    // TODO: Add update logic here
+
+            //    return RedirectToAction("Index");
+            //}
+            //catch
+            //{
+            //    return View();
+            //}
         }
 
         // GET: Article/Delete/5
